@@ -29,7 +29,7 @@ const SuccessDialog = ({ onClose, userName }) => {
     return (
       <div className="welcome-page">
         <div className="welcome-content">
-          <h2 className="welcome-message">Welcome, {userName || 'User'}</h2>
+          <h2 className="welcome-message">Welcome, {userName || 'User'}!</h2>
           <p> Explore games, stories, and learning adventures! </p>
           <div className="arrow-container" onMouseEnter={handleArrowHover}>
             <FaArrowRight className="home-arrow" />

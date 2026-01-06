@@ -248,7 +248,6 @@ const Home = ({ role, userName, userImage, userData, onUserDataUpdate, onLogout 
       <div className="home-content">
         {currentPage === 'home' && (
           <div className={`home-main ${isLoaded ? 'loaded' : ''}`}>
-
             {/* Functionality Cards Grid */}
             <div className={`functionality-section ${isLoaded ? 'fade-in aos-init aos-animate' : ''}`}>
               <div className="functionality-grid">
@@ -462,15 +461,15 @@ const Home = ({ role, userName, userImage, userData, onUserDataUpdate, onLogout 
               </button>
               <h2>Help & Support</h2>
             </div>
-            <p className="simple-page-copy help-subtitle">We’re here to help you and your child every step of the way.</p>
+            <p className="simple-page-copy help-subtitle">We're here to help you and your child every step of the way.</p>
             <div className="help-grid">
               {[
                 { icon: '❓', title: 'FAQ', text: 'Find quick answers to common questions parents often ask.' },
                 { icon: '🧭', title: 'How It Works', text: 'Learn how to use the platform step by step with ease.' },
                 { icon: '👨‍👩‍👧', title: 'Parent Guide', text: 'Simple tips to help you support your child during activities.' },
-                { icon: '🛠', title: 'Technical Support', text: 'Facing a technical issue? We’re here to help you fix it.' },
+                { icon: '🛠', title: 'Technical Support', text: 'Facing a technical issue? We're here to help you fix it.' },
                 { icon: '💬', title: 'Contact Support', text: 'Get in touch with our support team anytime you need help.' },
-                { icon: '🔒', title: 'Safety & Privacy', text: 'Your child’s safety and privacy are always our top priority.' },
+                { icon: '🔒', title: 'Safety & Privacy', text: 'Your child's safety and privacy are always our top priority.' },
               ].map((item, idx) => (
                 <div key={idx} className="help-card">
                   <div className="help-icon">{item.icon}</div>

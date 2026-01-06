@@ -1,0 +1,341 @@
+.video-call-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  background: #1a1a1a;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Back Arrow */
+.call-back-btn {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.call-back-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: translateX(-50%) translateY(-2px);
+}
+
+/* Background Pattern */
+.call-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #1a1a1a;
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 4px);
+  opacity: 0.3;
+  z-index: 0;
+}
+
+/* Header */
+.call-header {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1.5rem 1rem;
+  color: #fff;
+}
+
+.call-header-btn {
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.call-header-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: scale(1.1);
+}
+
+.call-header-info {
+  text-align: center;
+  flex: 1;
+}
+
+.call-contact-name {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.call-status {
+  margin: 0;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Menu Dropdown */
+.call-menu-dropdown {
+  position: absolute;
+  top: 5rem;
+  right: 1.5rem;
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 12px;
+  padding: 0.5rem 0;
+  z-index: 20;
+  min-width: 200px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.call-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  background: none;
+  border: none;
+  text-align: right;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #fff;
+  transition: background 0.2s ease;
+}
+
+.call-menu-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.call-menu-item svg {
+  font-size: 1.1rem;
+  width: 20px;
+}
+
+/* Main Area */
+.call-main-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+}
+
+.call-profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.call-profile-image {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+.call-profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.call-avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #264774 0%, #4ECDC4 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 5rem;
+  font-weight: bold;
+}
+
+/* Ringing Animation */
+.call-profile-image.ringing {
+  animation: ringPulse 2s ease-in-out infinite;
+}
+
+@keyframes ringPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+  }
+}
+
+/* Video Elements */
+.remote-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.local-video-container {
+  position: absolute;
+  bottom: 120px;
+  right: 1.5rem;
+  width: 120px;
+  height: 160px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.local-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+}
+
+/* Controls */
+.call-controls {
+  position: relative;
+  z-index: 5;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+}
+
+.call-controls-top {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.call-encryption-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+}
+
+.call-encryption-info svg {
+  font-size: 0.9rem;
+}
+
+.call-controls-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.call-control-btn {
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: #fff;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.3rem;
+}
+
+.call-control-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: scale(1.1);
+}
+
+.call-control-btn.active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.hangup-btn {
+  background: #F44336;
+  width: 64px;
+  height: 64px;
+}
+
+.hangup-btn:hover {
+  background: #d32f2f;
+  transform: scale(1.15);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .call-contact-name {
+    font-size: 1.5rem;
+  }
+
+  .call-profile-image {
+    width: 200px;
+    height: 200px;
+  }
+
+  .call-avatar-placeholder {
+    font-size: 4rem;
+  }
+
+  .local-video-container {
+    width: 100px;
+    height: 140px;
+    bottom: 100px;
+  }
+
+  .call-control-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 1.1rem;
+  }
+
+  .hangup-btn {
+    width: 56px;
+    height: 56px;
+  }
+
+  .call-controls-bottom {
+    gap: 1rem;
+  }
+}
+
