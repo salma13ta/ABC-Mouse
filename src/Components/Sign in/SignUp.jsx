@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SignUp.css';
 import VerificationCode from './VerificationCode';
 import signupBg from '../video-img/sign-in,login-out/sign_up.png';
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const SignUp = ({ role, onScreenChange, onSignUpSuccess }) => {
   const [showVerification, setShowVerification] = useState(false);
@@ -22,6 +25,11 @@ const SignUp = ({ role, onScreenChange, onSignUpSuccess }) => {
     licenseImage: null,
     idImage: null
   });
+//add animation..................
+useEffect(()=>{
+  AOS.init({duration:2000})
+  },[])
+
 
   const handleFileChange = (e, fieldName) => {
     const file = e.target.files[0];
@@ -38,6 +46,8 @@ const SignUp = ({ role, onScreenChange, onSignUpSuccess }) => {
       ...formData,
       [e.target.name]: e.target.value
     });
+
+    
   };
 
   const handleSignUp = (e) => {
@@ -46,10 +56,26 @@ const SignUp = ({ role, onScreenChange, onSignUpSuccess }) => {
     const userImage = role === 'child' && formData.childImage 
       ? URL.createObjectURL(formData.childImage) 
       : null;
-    window.tempUserData = { 
-      name: formData.name || 'John Doe', 
-      image: userImage 
+    
+    const fullUserData = {
+      name: formData.name || 'John Doe',
+      mobileNumber: formData.mobileNumber || '',
+      email: formData.email || '',
+      image: userImage,
+      ...(role === 'child' ? {
+        childName: formData.childName || '',
+        childAge: formData.childAge || '',
+        childImage: userImage
+      } : {
+        doctorSpecialty: formData.doctorSpecialty || '',
+        address: formData.address || '',
+        certificateImage: formData.certificateImage ? URL.createObjectURL(formData.certificateImage) : null,
+        licenseImage: formData.licenseImage ? URL.createObjectURL(formData.licenseImage) : null,
+        idImage: formData.idImage ? URL.createObjectURL(formData.idImage) : null
+      })
     };
+    
+    window.tempUserData = fullUserData;
     // Show verification code screen
     setShowVerification(true);
   };
@@ -61,16 +87,29 @@ const SignUp = ({ role, onScreenChange, onSignUpSuccess }) => {
         onBack={() => setShowVerification(false)}
         onVerifySuccess={() => {
           if (onSignUpSuccess) {
-            const userData = window.tempUserData || { name: formData.name, image: null };
-            onSignUpSuccess(userData.name, userData.image);
+            const userData = window.tempUserData || { 
+              name: formData.name || 'John Doe', 
+              image: null,
+              mobileNumber: formData.mobileNumber || '',
+              email: formData.email || '',
+              ...(role === 'child' ? {
+                childName: formData.childName || '',
+                childAge: formData.childAge || ''
+              } : {
+                doctorSpecialty: formData.doctorSpecialty || '',
+                address: formData.address || ''
+              })
+            };
+            onSignUpSuccess(userData.name, userData.image, userData);
           }
         }}
       />
     );
   }
+  
 
   return (
-    <div className="signup-container">
+    <div data-aos="fade-down" className="signup-container">
       <div className="signup-content">
         <h1 className="signup-title">HELLO!</h1>
         

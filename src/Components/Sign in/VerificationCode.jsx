@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './VerificationCode.css';
 import SuccessDialog from './SuccessDialog';
 import verifyBg from '../video-img/sign-in,login-out/otp.png';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const VerificationCode = ({ role, onBack, onVerifySuccess }) => {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
+
+  //add animation..................
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
 
   const handleOtpChange = (index, value) => {
     if (value.length > 1) return;
@@ -46,7 +53,7 @@ const VerificationCode = ({ role, onBack, onVerifySuccess }) => {
 
   return (
     <>
-      <div className="verification-container">
+      <div data-aos="fade-down" className="verification-container">
         <div className="verification-content">
           <div className="header-section">
             <h1 className="verification-title">Verification code</h1>

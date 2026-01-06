@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ForgotPassword.css';
 import PasswordReset from './PasswordReset';
 import forgotBg from '../video-img/sign-in,login-out/forgot_password.png';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const ForgotPassword = ({ role, onBack }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [showPasswordReset, setShowPasswordReset] = useState(false);
+
+  //add animation..................
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
 
   const handleContinue = (e) => {
     e.preventDefault();

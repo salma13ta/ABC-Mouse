@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SignIn.css';
-import childImage from './Activities for Kids - ALDI UK.jfif';
-import doctorImage from './تنزيل.jfif';
+import childImage from './children-reading-removebg-preview.png';
+import doctorImage from './doctor-child-removebg-preview.png';
 import WelcomeBack from './WelcomeBack';
 import SignUp from './SignUp';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import imgLogo from '../video-img/WhatsApp_Image_2026-01-05_at_4.43.00_PM-removebg-preview.png';
 
 const SignIn = ({ onSignInSuccess }) => {
   const [selectedRole, setSelectedRole] = useState(null); // 'child' or 'doctor'
@@ -18,11 +21,16 @@ const SignIn = ({ onSignInSuccess }) => {
     setCurrentScreen(screen);
   };
 
-  const handleSignInSuccess = (name, image) => {
+  const handleSignInSuccess = (name, image, fullData) => {
     if (onSignInSuccess) {
-      onSignInSuccess(selectedRole, name, image);
+      onSignInSuccess(selectedRole, name, image, fullData);
     }
   };
+
+  //add animation..................
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
 
   // Show Welcome Back (Sign In) screen
   if (currentScreen === 'signin') {
@@ -42,9 +50,11 @@ const SignIn = ({ onSignInSuccess }) => {
 
   // Show role selection screen
   return (
-    <div className="signin-container">
+    <div data-aos="fade-down" className="signin-container">
       <div className="signin-content">
+        <img src={imgLogo} alt="logo" className="logo" />
         <h1 className="signin-title">Who are you?</h1>
+        <p className="signin-paragraph">Your child's journey to better communication starts here!</p>
         <div className="role-options">
           <div 
             className="role-card" 
@@ -70,6 +80,7 @@ const SignIn = ({ onSignInSuccess }) => {
             </div>
           </div>
         </div>
+        <p className="signin-paragraph">Explore games, stories, and learning adventures!</p>
       </div>
     </div>
   );

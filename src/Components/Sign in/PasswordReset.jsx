@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './PasswordReset.css';
 import resetBg from '../video-img/sign-in,login-out/new_pass.png';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const PasswordReset = ({ role, phoneNumber, onBack }) => {
   const [otp, setOtp] = useState(['', '', '', '']);
@@ -8,6 +10,11 @@ const PasswordReset = ({ role, phoneNumber, onBack }) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  //add animation..................
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
 
   const handleOtpChange = (index, value) => {
     if (value.length > 1) return;

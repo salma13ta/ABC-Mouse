@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# ABC Mouse
+
+ABC Mouse is a platform for learning ABCs and numbers for children.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

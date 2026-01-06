@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SuccessDialog.css';
 import successImage from '../video-img/sign-in,login-out/Jumping girl (2).gif';
 import { FaArrowRight } from 'react-icons/fa';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const SuccessDialog = ({ onClose, userName }) => {
   const [showWelcome, setShowWelcome] = useState(false);
   const word = "Success";
   const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F', '#BB8FCE'];
+  
+  //add animation..................
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
   
   const handleOkClick = () => {
     setShowWelcome(true);
@@ -20,9 +27,10 @@ const SuccessDialog = ({ onClose, userName }) => {
 
   if (showWelcome) {
     return (
-      <div className="dialog-overlay">
-        <div className="welcome-screen" onClick={(e) => e.stopPropagation()}>
-          <h2 className="welcome-message">Welcome, {userName || 'User'}!</h2>
+      <div className="welcome-page">
+        <div className="welcome-content">
+          <h2 className="welcome-message">Welcome, {userName || 'User'}</h2>
+          <p> Explore games, stories, and learning adventures! </p>
           <div className="arrow-container" onMouseEnter={handleArrowHover}>
             <FaArrowRight className="home-arrow" />
           </div>
@@ -32,8 +40,8 @@ const SuccessDialog = ({ onClose, userName }) => {
   }
   
   return (
-    <div className="dialog-overlay" onClick={onClose}>
-      <div className="dialog-content" onClick={(e) => e.stopPropagation()}>
+    <div data-aos="zoom-out-down" className="dialog-overlay" onClick={onClose}>
+      <div data-aos="zoom-in-up" className="dialog-content" onClick={(e) => e.stopPropagation()}>
         <h2 className="dialog-title">
           {word.split('').map((char, index) => (
             <span

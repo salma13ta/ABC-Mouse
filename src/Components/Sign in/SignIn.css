@@ -3,7 +3,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
 }
 
 .signin-content {
@@ -12,11 +11,22 @@
   text-align: center;
 }
 
+.logo {
+  width: 250px;
+  height: auto;
+}
+
 .signin-title {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #333;
-  margin-bottom: 3rem;
+  color: #714a5e;
+}
+
+.signin-paragraph {
+  font-size: 1.2rem;
+  color: #714a5e5e;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 
 .role-options {
@@ -27,9 +37,7 @@
 
 .role-card {
   position: relative;
-  background-color: #f8f9fa;
   background-size: cover;
-  background-position: center;
   background-repeat: no-repeat;
   border-radius: 16px;
   padding: 2.5rem;
@@ -49,14 +57,14 @@
 
 .role-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px #714a5e44;
   border-color: var(--primary-color);
 }
 
 .role-overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.447);
   z-index: 1;
 }
 
@@ -75,13 +83,13 @@
 .role-title {
   font-size: 1.75rem;
   font-weight: bold;
-  color: #333;
+  color: #714a5e;
   margin-bottom: 1rem;
 }
 
 .role-description {
   font-size: 1rem;
-  color: #666;
+  color: #714a5e6f;
   line-height: 1.6;
   margin-bottom: 1rem;
 }

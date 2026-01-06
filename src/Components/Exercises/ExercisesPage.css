@@ -1,0 +1,113 @@
+.exercises-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.exercises-hero {
+  background: linear-gradient(135deg, #f39c94, #c79dff);
+  color: #ffffffe6;
+  border-radius: 18px;
+  padding: 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+}
+
+.exercises-hero h3 {
+  margin: 0 0 0.3rem 0;
+  font-weight: 600;
+}
+
+.hero-number {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.exercises-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.exercise-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  min-height: 180px;
+}
+
+.exercise-thumb {
+  background-size: cover;
+  background-position: center;
+  filter: saturate(0.9);
+}
+
+.exercise-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.exercise-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.exercise-header h3 {
+  margin: 0;
+}
+
+.exercise-category {
+  margin: 0.2rem 0 0;
+  color: #7a8090;
+}
+
+.exercise-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: #f2f4f9;
+  border-radius: 12px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.85rem;
+  color: #5f6470;
+}
+
+.exercise-status.done {
+  background: #e7f8ec;
+  color: #2b9e60;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.exercise-cta {
+  align-self: stretch;
+  margin-top: auto;
+}
+
+@media (max-width: 768px) {
+  .exercise-card {
+    grid-template-columns: 1fr;
+  }
+
+  .exercise-thumb {
+    min-height: 140px;
+  }
+}
+
+
