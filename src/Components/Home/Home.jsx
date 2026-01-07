@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import './Home.css';
 import Chat from '../chat/Chat';
 import UserProfile from '../UserProfile/UserProfile';
@@ -13,71 +13,78 @@ import { CgProfile } from "react-icons/cg";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { getDoctorExercises, getDoctorProgress } from '../../services/mockDoctorData';
 
-// Sessions data - moved outside component to avoid re-creation
-const upcomingSessions = [
+// Generate dates relative to current date to ensure they're always upcoming
+const getUpcomingDate = (daysFromNow, hours = 10, minutes = 0) => {
+  const date = new Date();
+  date.setDate(date.getDate() + daysFromNow);
+  date.setHours(hours, minutes, 0, 0);
+  return date;
+};
+
+const Home = ({ role, userName, userImage, userData, onUserDataUpdate, onLogout }) => {
+  // Sessions data - created inside component to ensure proper calculation
+  const upcomingSessions = useMemo(() => [
     {
       doctorName: "Dr. Sarah Johnson",
-      dateTime: new Date(2026, 0, 12, 10, 0),
+      dateTime: getUpcomingDate(2, 10, 0),
       type: "Online",
       icon: "video",
     },
     {
       doctorName: "Dr. Emily Rodriguez",
-      dateTime: new Date(2026, 0, 13, 14, 0),
+      dateTime: getUpcomingDate(3, 14, 0),
       type: "In-Person",
       icon: "location",
     },
     {
       doctorName: "Dr. Michael Brown",
-      dateTime: new Date(2026, 0, 14, 11, 30),
+      dateTime: getUpcomingDate(4, 11, 30),
       type: "Online",
       icon: "video",
     },
     {
       doctorName: "Dr. Olivia Wilson",
-      dateTime: new Date(2026, 0, 15, 9, 0),
+      dateTime: getUpcomingDate(5, 9, 0),
       type: "In-Person",
       icon: "location",
     },
     {
       doctorName: "Dr. David Anderson",
-      dateTime: new Date(2026, 0, 16, 13, 0),
+      dateTime: getUpcomingDate(6, 13, 0),
       type: "Online",
       icon: "video",
     },
     {
       doctorName: "Dr. Sophia Martinez",
-      dateTime: new Date(2026, 0, 17, 15, 30),
+      dateTime: getUpcomingDate(7, 15, 30),
       type: "In-Person",
       icon: "location",
     },
     {
       doctorName: "Dr. James Taylor",
-      dateTime: new Date(2026, 0, 18, 10, 0),
+      dateTime: getUpcomingDate(8, 10, 0),
       type: "Online",
       icon: "video",
     },
     {
       doctorName: "Dr. Emma Thomas",
-      dateTime: new Date(2026, 0, 19, 12, 0),
+      dateTime: getUpcomingDate(9, 12, 0),
       type: "In-Person",
       icon: "location",
     },
     {
       doctorName: "Dr. Daniel Moore",
-      dateTime: new Date(2026, 0, 20, 16, 0),
+      dateTime: getUpcomingDate(10, 16, 0),
       type: "Online",
       icon: "video",
     },
     {
       doctorName: "Dr. Isabella Clark",
-      dateTime: new Date(2026, 0, 21, 9, 30),
+      dateTime: getUpcomingDate(11, 9, 30),
       type: "In-Person",
       icon: "location",
     },
-];
-
-const Home = ({ role, userName, userImage, userData, onUserDataUpdate, onLogout }) => {
+  ], []);
   const [currentPage, setCurrentPage] = useState('home');
   const [isLoaded, setIsLoaded] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
@@ -111,8 +118,10 @@ const Home = ({ role, userName, userImage, userData, onUserDataUpdate, onLogout 
     return `${month} ${day}, ${year} at ${hours}:${minutesStr} ${ampm}`;
   };
 
-  // Get sessions to display (2 initially, all when showAllSessions is true)
-  const displayedSessions = showAllSessions ? upcomingSessions : upcomingSessions.slice(0, 2);
+  // Get sessions to display (3 initially, all when showAllSessions is true)
+  const displayedSessions = useMemo(() => {
+    return showAllSessions ? upcomingSessions : upcomingSessions.slice(0, 3);
+  }, [showAllSessions, upcomingSessions]);
 
   // Calculate progress percentage based on exercises
   // This function reads exercises data from userData or localStorage
@@ -247,7 +256,7 @@ const Home = ({ role, userName, userImage, userData, onUserDataUpdate, onLogout 
 
       <div className="home-content">
         {currentPage === 'home' && (
-          <div className={`home-main ${isLoaded ? 'loaded' : ''}`}>
+          <div className="home-main">
             {/* Functionality Cards Grid */}
             <div className={`functionality-section ${isLoaded ? 'fade-in aos-init aos-animate' : ''}`}>
               <div className="functionality-grid">
@@ -264,8 +273,7 @@ const Home = ({ role, userName, userImage, userData, onUserDataUpdate, onLogout 
                   <h3 className="card-title">Find Doctor</h3>
                   <p className="card-subtitle">Browse specialists</p>
                 </div>
-
-                <div className={`functionality-card exercises-card ${isLoaded ? 'aos-init aos-animate' : ''}`}
+                <div className={`functionality-card find-doctor-card ${isLoaded ? 'aos-init aos-animate' : ''}`}
                   onClick={() => handleNavigate('exercises')}
                   data-aos="fade-up"
                 >
@@ -279,7 +287,7 @@ const Home = ({ role, userName, userImage, userData, onUserDataUpdate, onLogout 
                   <p className="card-subtitle">Practice activities</p>
                 </div>
 
-                <div className={`functionality-card exercises-card ${isLoaded ? 'aos-init aos-animate' : ''}`}
+                <div className={`functionality-card progress-card ${isLoaded ? 'aos-init aos-animate' : ''}`}
                   onClick={() => handleNavigate('progress')}
                   data-aos="fade-up"
                 >
@@ -297,7 +305,7 @@ const Home = ({ role, userName, userImage, userData, onUserDataUpdate, onLogout 
                   <p className="card-subtitle">View reports</p>
                 </div>
 
-                <div className={`functionality-card messages-card ${isLoaded ? 'aos-init aos-animate' : ''}`}
+                <div className={`functionality-card chat-card ${isLoaded ? 'aos-init aos-animate' : ''}`}
                   onClick={() => handleNavigate('chat')}
                   data-aos="fade-up"
                 >
@@ -316,7 +324,7 @@ const Home = ({ role, userName, userImage, userData, onUserDataUpdate, onLogout 
             <div className="upcoming-sessions-section">
               <div className="sessions-header">
                 <h2 className="sessions-title">Upcoming Sessions</h2>
-                {upcomingSessions.length > 2 && (
+                {upcomingSessions.length > 3 && (
                 <div className="view-all-container">
                   <button 
                     className="view-all-btn"
@@ -467,9 +475,9 @@ const Home = ({ role, userName, userImage, userData, onUserDataUpdate, onLogout 
                 { icon: '❓', title: 'FAQ', text: 'Find quick answers to common questions parents often ask.' },
                 { icon: '🧭', title: 'How It Works', text: 'Learn how to use the platform step by step with ease.' },
                 { icon: '👨‍👩‍👧', title: 'Parent Guide', text: 'Simple tips to help you support your child during activities.' },
-                { icon: '🛠', title: 'Technical Support', text: 'Facing a technical issue? We're here to help you fix it.' },
+                { icon: '🛠', title: 'Technical Support', text: "Facing a technical issue? We're here to help you fix it." },
                 { icon: '💬', title: 'Contact Support', text: 'Get in touch with our support team anytime you need help.' },
-                { icon: '🔒', title: 'Safety & Privacy', text: 'Your child's safety and privacy are always our top priority.' },
+                { icon: '🔒', title: 'Safety & Privacy', text: "Your child's safety and privacy are always our top priority." },
               ].map((item, idx) => (
                 <div key={idx} className="help-card">
                   <div className="help-icon">{item.icon}</div>

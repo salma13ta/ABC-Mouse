@@ -165,8 +165,6 @@
 .child-profile-section-merged {
   margin-top: 1rem;
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
 }
 
 .child-profile-section-merged.fade-in {
@@ -202,29 +200,17 @@
 
 .home-main {
   max-width: 1200px;
-  margin: 0 auto;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.home-main.loaded {
+  margin: 0 15%;
   opacity: 1;
-  transform: translateY(0);
+  /* transform: translateY(0);
+  overflow: visible; */
 }
 
 /* Child Profile Section (kept for backward compatibility) */
 .child-profile-section {
   margin-bottom: 2rem;
   opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s ease forwards;
 }
-
-.child-profile-section.fade-in {
-  animation: fadeInUp 0.6s ease forwards;
-}
-
 .child-profile-card {
   margin: 0 1rem ;
 }
@@ -324,16 +310,21 @@
   margin-top: 2rem;
   margin-bottom: 2rem;
   width: 100%;
-  opacity: 1;
-  visibility: visible;
-  display: block;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  position: relative;
+  z-index: 1;
 }
 
 .sessions-header {
-  display: flex;
+  display: flex !important;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
+  width: 100%;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .sessions-title {
@@ -341,6 +332,9 @@
   font-weight: 700;
   color: #333;
   margin: 0;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
 }
 
 .view-all-container {
@@ -368,10 +362,15 @@
 }
 
 .sessions-list {
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   gap: 1rem;
   min-height: 100px;
+  width: 100%;
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: relative;
+  z-index: 1;
 }
 
 .no-sessions {
@@ -385,14 +384,16 @@
   background: #fff;
   border-radius: 12px;
   padding: 1.25rem;
-  display: flex;
+  display: flex !important;
   align-items: center;
   gap: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
-  visibility: visible;
-  opacity: 1;
+  visibility: visible !important;
+  opacity: 1 !important;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .session-card:hover {
@@ -919,11 +920,9 @@ input:checked + .slider:before {
 .session-card {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 16px;
-  padding: 1.5rem;
+  padding: 1rem;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
   opacity: 0;
-  transform: translateY(30px);
 }
 
 .session-card.slide-up {
