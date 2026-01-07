@@ -4,7 +4,7 @@ import { FaSearch, FaPaperPlane, FaImage, FaFile, FaMicrophone, FaPhone, FaVideo
 import VideoCall from './VideoCall';
 import { IoMdArrowRoundBack } from "react-icons/io";
 
-const Chat = ({ onBack, userImage, userName }) => {
+const Chat = ({ onBack, userImage, userName, role, patients }) => {
   const [selectedChat, setSelectedChat] = useState(null);
   const [activeCall, setActiveCall] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -21,62 +21,102 @@ const Chat = ({ onBack, userImage, userName }) => {
   const avatarName = (userName || '').trim();
   const avatarInitial = avatarName ? avatarName.charAt(0).toUpperCase() : '?';
 
-  // Mock data for chats
-  const chats = [
-    { 
-      id: 1, 
-      name: 'Dr. Ahmed', 
-      image: null, 
-      lastMessage: "How can I help Maram?", 
-      time: '10:30 AM',
-      unread: 2
-    },
-    { 
-      id: 2, 
-      name: 'Dr. Sarah', 
-      image: null, 
-      lastMessage: "Maram needs help", 
-      time: '9:15 AM',
-      unread: 0
-    },
-    { 
-      id: 3, 
-      name: 'Dr. Mohamed', 
-      image: null, 
-      lastMessage: "I'll provide extra lessons to her this week", 
-      time: 'Yesterday',
-      unread: 1
-    },
-    { 
-      id: 4, 
-      name: 'Dr. Fatima', 
-      image: null, 
-      lastMessage: "Great progress!", 
-      time: '2 days ago',
-      unread: 0
+  // Mock data for chats - different for doctor vs child/parent
+  const getChats = () => {
+    if (role === 'doctor' && patients) {
+      // For doctor: show patients as chats
+      return patients.map(patient => ({
+        id: patient.id,
+        name: patient.name,
+        image: patient.image,
+        lastMessage: `Last session: ${patient.lastSession}`,
+        time: patient.nextSession,
+        unread: 0,
+        age: patient.age,
+        condition: patient.condition
+      }));
+    } else {
+      // For child/parent: show doctors as chats
+      return [
+        { 
+          id: 1, 
+          name: 'Dr. Ahmed', 
+          image: null, 
+          lastMessage: "How can I help Maram?", 
+          time: '10:30 AM',
+          unread: 2
+        },
+        { 
+          id: 2, 
+          name: 'Dr. Sarah', 
+          image: null, 
+          lastMessage: "Maram needs help", 
+          time: '9:15 AM',
+          unread: 0
+        },
+        { 
+          id: 3, 
+          name: 'Dr. Mohamed', 
+          image: null, 
+          lastMessage: "I'll provide extra lessons to her this week", 
+          time: 'Yesterday',
+          unread: 1
+        },
+        { 
+          id: 4, 
+          name: 'Dr. Fatima', 
+          image: null, 
+          lastMessage: "Great progress!", 
+          time: '2 days ago',
+          unread: 0
+        }
+      ];
     }
-  ];
+  };
+
+  const chats = getChats();
 
   // Initialize messages for each chat
   const initializeMessages = (chatId) => {
     if (!messages[chatId]) {
-      const chatMessages = {
-        1: [
-          { id: 1, text: "How can I help Maram?", sender: 'doctor', time: '10:30 AM' },
-          { id: 2, text: "Maram needs help", sender: 'user', time: '10:25 AM' },
-          { id: 3, text: "I'll provide extra lessons to her this week", sender: 'doctor', time: '10:20 AM' }
-        ],
-        2: [
-          { id: 1, text: "Hello, how can I assist you today?", sender: 'doctor', time: '9:15 AM' }
-        ],
-        3: [
-          { id: 1, text: "I'll provide extra lessons to her this week", sender: 'doctor', time: 'Yesterday' }
-        ],
-        4: [
-          { id: 1, text: "Great progress!", sender: 'doctor', time: '2 days ago' }
-        ]
-      };
-      setMessages({ ...messages, [chatId]: chatMessages[chatId] || [] });
+      if (role === 'doctor') {
+        // For doctor: messages from patient/parent
+        const chatMessages = {
+          1: [
+            { id: 1, text: "Hello Dr., Emma is doing well with the exercises", sender: 'patient', time: '10:30 AM' },
+            { id: 2, text: "That's great to hear! Keep practicing daily", sender: 'doctor', time: '10:25 AM' },
+            { id: 3, text: "Thank you for the update", sender: 'patient', time: '10:20 AM' }
+          ],
+          2: [
+            { id: 1, text: "Noah had a good session today", sender: 'patient', time: '9:15 AM' },
+            { id: 2, text: "Excellent! I noticed improvement in his language skills", sender: 'doctor', time: '9:10 AM' }
+          ],
+          3: [
+            { id: 1, text: "Olivia completed all the assigned exercises", sender: 'patient', time: 'Yesterday' },
+            { id: 2, text: "Wonderful! Her progress is remarkable", sender: 'doctor', time: 'Yesterday' }
+          ]
+        };
+        setMessages({ ...messages, [chatId]: chatMessages[chatId] || [] });
+      } else {
+        // For child/parent: original messages
+        const chatMessages = {
+          1: [
+            { id: 1, text: "How can I help Maram?", sender: 'doctor', time: '10:30 AM' },
+            { id: 2, text: "Maram needs help", sender: 'user', time: '10:25 AM' },
+            { id: 3, text: "I'll provide extra lessons to her this week", sender: 'doctor', time: '10:20 AM' }
+          ],
+          2: [
+            { id: 1, text: "Hello, how can I assist you today?", sender: 'doctor', time: '9:15 AM' }
+          ],
+          3: [
+            { id: 1, text: "I'll provide extra lessons to her this week", sender: 'doctor', time: 'Yesterday' }
+          ],
+          4: [
+            { id: 1, text: "Great progress!", sender: 'doctor', time: '2 days ago' }
+          ]
+        };
+        setMessages({ ...messages, [chatId]: chatMessages[chatId] || [] });
+      }
     }
   };
 
@@ -90,7 +130,7 @@ const Chat = ({ onBack, userImage, userName }) => {
       const message = {
         id: Date.now(),
         text: newMessage,
-        sender: 'user',
+        sender: role === 'doctor' ? 'doctor' : 'user',
         time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
       };
       setMessages({
@@ -298,7 +338,7 @@ const Chat = ({ onBack, userImage, userName }) => {
 
   if (selectedChat) {
     return (
-      <div className="chat-container">
+      <div className="chat-container" data-role={role || ''}>
         {/* Chat Header */}
         <div className="chat-header">
           <button className="back-btn" onClick={() => setSelectedChat(null)}>
@@ -384,55 +424,61 @@ const Chat = ({ onBack, userImage, userName }) => {
 
         {/* Messages Area */}
         <div className="messages-container">
-          {selectedChatMessages.map((message) => (
-            <div key={message.id} className={`message ${message.sender === 'user' ? 'message-right' : 'message-left'}`}>
-              {message.sender === 'doctor' && (
-                <div className="message-avatar">
-                  {selectedChat.image ? (
-                    <img src={selectedChat.image} alt={selectedChat.name} />
-                  ) : (
-                    <div className="avatar-placeholder-small">
-                      {selectedChat.name.charAt(0)}
+          {selectedChatMessages.map((message) => {
+            // Determine message alignment based on role
+            const isDoctorMessage = (role === 'doctor' && message.sender === 'doctor') || (role !== 'doctor' && message.sender === 'doctor');
+            const isUserMessage = (role === 'doctor' && message.sender === 'patient') || (role !== 'doctor' && message.sender === 'user');
+            
+            return (
+              <div key={message.id} className={`message ${isDoctorMessage ? 'message-right' : 'message-left'}`}>
+                {isUserMessage && (
+                  <div className="message-avatar">
+                    {selectedChat.image ? (
+                      <img src={selectedChat.image} alt={selectedChat.name} />
+                    ) : (
+                      <div className="avatar-placeholder-small">
+                        {selectedChat.name.charAt(0)}
+                      </div>
+                    )}
+                  </div>
+                )}
+                <div className="message-content">
+                  {message.type === 'image' && (
+                    <img src={URL.createObjectURL(message.file)} alt="Sent" className="message-image" />
+                  )}
+                  {message.type === 'file' && (
+                    <div className="message-file">
+                      <FaFile />
+                      <span>{message.fileName}</span>
                     </div>
                   )}
+                  {message.type === 'audio' && (
+                    <div className="message-audio">
+                      <audio controls src={message.file ? URL.createObjectURL(message.file) : ''}>
+                        Your browser does not support the audio element.
+                      </audio>
+                      <span>Voice Message</span>
+                    </div>
+                  )}
+                  {message.text && (
+                    <p>{message.text}</p>
+                  )}
+                  <span className="message-time">{message.time}</span>
                 </div>
-              )}
-              <div className="message-content">
-                {message.type === 'image' && (
-                  <img src={URL.createObjectURL(message.file)} alt="Sent" className="message-image" />
-                )}
-                {message.type === 'file' && (
-                  <div className="message-file">
-                    <FaFile />
-                    <span>{message.fileName}</span>
+                {isDoctorMessage && (
+                  <div className="message-avatar user-avatar">
+                    {userImage ? (
+                      <img src={userImage} alt={avatarName || 'Profile'} />
+                    ) : (
+                      <div className="avatar-placeholder-small">
+                        {avatarInitial}
+                      </div>
+                    )}
                   </div>
                 )}
-                {message.type === 'audio' && (
-                  <div className="message-audio">
-                    <audio controls src={message.file ? URL.createObjectURL(message.file) : ''}>
-                      Your browser does not support the audio element.
-                    </audio>
-                    <span>Voice Message</span>
-                  </div>
-                )}
-                {message.text && (
-                  <p>{message.text}</p>
-                )}
-                <span className="message-time">{message.time}</span>
               </div>
-              {message.sender === 'user' && (
-                <div className="message-avatar user-avatar">
-                  {userImage ? (
-                    <img src={userImage} alt={avatarName || 'Profile'} />
-                  ) : (
-                    <div className="avatar-placeholder-small">
-                      {avatarInitial}
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Image List Modal */}
@@ -557,10 +603,13 @@ const Chat = ({ onBack, userImage, userName }) => {
             </div>
             <div className="chat-item-info">
               <div className="chat-item-header">
-                <h3>{chat.name}</h3>
+                <h3>{chat.name}{chat.age ? `, ${chat.age}` : ''}</h3>
                 <span className="chat-time">{chat.time}</span>
               </div>
               <p className="chat-last-message">{chat.lastMessage}</p>
+              {chat.condition && (
+                <p className="chat-condition">{chat.condition}</p>
+              )}
             </div>
             {chat.unread > 0 && (
               <div className="chat-unread-badge">{chat.unread}</div>

@@ -21,7 +21,7 @@ const getUpcomingDate = (daysFromNow, hours = 10, minutes = 0) => {
   return date;
 };
 
-const Home = ({ role, userName, userImage, userData, onUserDataUpdate, onLogout }) => {
+const Home = ({ userName, userImage, userData, onUserDataUpdate, onLogout }) => {
   // Sessions data - created inside component to ensure proper calculation
   const upcomingSessions = useMemo(() => [
     {
@@ -407,7 +407,7 @@ const Home = ({ role, userName, userImage, userData, onUserDataUpdate, onLogout 
           <div className="page-content profile-page-wrapper">
             <UserProfile
               userData={userData}
-              role={role}
+              role="child"
               onSave={(updatedData) => {
                 if (onUserDataUpdate) {
                   onUserDataUpdate(updatedData);

@@ -1,0 +1,74 @@
+.doctor-functionality-card.doctor-messages-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 180px;
+  justify-content: center;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.doctor-functionality-card.doctor-messages-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.doctor-messages-icon {
+  background: rgba(255, 250, 205, 0.2);
+  color: #FFFACD;
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.doctor-functionality-card.doctor-messages-card:hover .doctor-messages-icon {
+  transform: scale(1.1);
+}
+
+.doctor-messages-icon svg {
+  width: 32px;
+  height: 32px;
+  stroke-width: 2.5;
+}
+
+.doctor-card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .doctor-functionality-card.doctor-messages-card {
+    padding: 1.5rem 1rem;
+    min-height: 150px;
+  }
+
+  .doctor-messages-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .doctor-messages-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .doctor-card-title {
+    font-size: 1.1rem;
+  }
+}
+

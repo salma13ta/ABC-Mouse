@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import SignIn from './Components/Sign in/SignIn';
 import Home from './Components/Home/Home';
+import DoctorHome from './Components/DoctorHome/DoctorHome';
 
 function App() {
   const [currentView, setCurrentView] = useState('signin'); // 'signin' or 'home'
@@ -97,9 +98,16 @@ function App() {
       <div className="app-content">
         {currentView === 'signin' ? (
           <SignIn onSignInSuccess={handleSignInSuccess} />
+        ) : userRole === 'doctor' ? (
+          <DoctorHome 
+            userName={userName} 
+            userImage={userImage}
+            userData={userData}
+            onUserDataUpdate={handleUserDataUpdate}
+            onLogout={handleLogout}
+          />
         ) : (
           <Home 
-            role={userRole} 
             userName={userName} 
             userImage={userImage}
             userData={userData}

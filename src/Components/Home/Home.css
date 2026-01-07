@@ -18,6 +18,11 @@
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
+/* Doctor Navbar Gradient */
+.home-navbar-merged.doctor-navbar {
+  background: linear-gradient(135deg, #264774 0%, #4A90E2 50%, #87CEEB 100%);
+}
+
 .home-navbar-merged.fade-in {
   opacity: 1;
   transform: translateY(0);

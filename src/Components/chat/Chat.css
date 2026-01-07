@@ -125,6 +125,13 @@
   white-space: nowrap;
 }
 
+.chat-condition {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.85rem;
+  color: #7f546a80;
+  font-style: italic;
+}
+
 .chat-unread-badge {
   background: #905774;
   color: #fff;
@@ -161,6 +168,7 @@
   border-radius: 10px 10px 0  0;
 }
 
+/* Doctor Chat Header - Blue Theme */
 .back-btn {
   background: none;
   border: none;
