@@ -174,10 +174,9 @@
   align-items: center;
   justify-content: center;
   border: none;
-  color: #67334e;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
+  font-size: 40px;
+  font-weight: bold;
+  /* border-radius: 50%; */
   cursor: pointer;
 }
 

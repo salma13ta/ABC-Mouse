@@ -328,9 +328,9 @@ const DoctorHome = ({ userName, userImage, userData, onUserDataUpdate, onLogout 
             </div>
             <div className="doctor-settings-list">
               {[
-                { key: 'notifications', title: 'Notifications', desc: 'Receive alerts about sessions and updates' },
+                { key: 'notifications', title: 'Notifications', desc: 'Receive alerts about sessions' },
                 { key: 'sounds', title: 'Sound Effects', desc: 'Play friendly sounds in the app' },
-                { key: 'muteSessionReminders', title: 'Mute Session Reminders', desc: 'Silence reminders during quiet hours' },
+                { key: 'muteSessionReminders', title: 'Mute Session Reminders', desc: 'Silence reminders quiet hours' },
               ].map(item => (
                 <div key={item.key} className="doctor-setting-item">
                   <div>

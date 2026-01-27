@@ -3,6 +3,7 @@ import './ProfileMenu.css';
 import { FaUserEdit, FaCog, FaLifeRing, FaSignOutAlt } from 'react-icons/fa';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import { CgProfile } from 'react-icons/cg';
+import { GoArrowRight } from 'react-icons/go';
 
 const ProfileMenu = ({
   userImage,
@@ -36,22 +37,22 @@ const ProfileMenu = ({
         <button className="profile-menu-item" onClick={onEditProfile}>
           <div className="profile-menu-icon edit"><FaUserEdit /></div>
           <span>Edit Profile</span>
-          <span className="profile-menu-arrow">→</span>
+          <span className="profile-menu-arrow"><GoArrowRight size={20} /></span>
         </button>
         <button className="profile-menu-item" onClick={onSettings}>
           <div className="profile-menu-icon settings"><FaCog /></div>
           <span>Settings</span>
-          <span className="profile-menu-arrow">→</span>
+          <span className="profile-menu-arrow"><GoArrowRight size={20} /></span>
         </button>
         <button className="profile-menu-item" onClick={onHelp}>
           <div className="profile-menu-icon help"><FaLifeRing /></div>
           <span>Help & Support</span>
-          <span className="profile-menu-arrow">→</span>
+          <span className="profile-menu-arrow"><GoArrowRight size={20} /></span>
         </button>
         <button className="profile-menu-item logout" onClick={onLogout}>
           <div className="profile-menu-icon logout"><FaSignOutAlt /></div>
           <span>Logout</span>
-          <span className="profile-menu-arrow">→</span>
+          <span className="profile-menu-arrow"><GoArrowRight size={20} /></span>
         </button>
       </div>
     </div>

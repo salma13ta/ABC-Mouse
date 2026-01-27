@@ -275,7 +275,6 @@ const Home = ({ userName, userImage, userData, onUserDataUpdate, onLogout }) => 
                 </div>
                 <div className={`functionality-card find-doctor-card ${isLoaded ? 'aos-init aos-animate' : ''}`}
                   onClick={() => handleNavigate('exercises')}
-                  data-aos="fade-up"
                 >
                   <div className="card-icon exercises-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -287,9 +286,8 @@ const Home = ({ userName, userImage, userData, onUserDataUpdate, onLogout }) => 
                   <p className="card-subtitle">Practice activities</p>
                 </div>
 
-                <div className={`functionality-card progress-card ${isLoaded ? 'aos-init aos-animate' : ''}`}
+                <div className={`functionality-card progress-card ${'aos-init aos-animate'}`}
                   onClick={() => handleNavigate('progress')}
-                  data-aos="fade-up"
                 >
                   <div className="card-icon progress-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -305,9 +303,8 @@ const Home = ({ userName, userImage, userData, onUserDataUpdate, onLogout }) => 
                   <p className="card-subtitle">View reports</p>
                 </div>
 
-                <div className={`functionality-card chat-card ${isLoaded ? 'aos-init aos-animate' : ''}`}
+                <div className={`functionality-card chat-card ${'aos-init aos-animate'}`}
                   onClick={() => handleNavigate('chat')}
-                  data-aos="fade-up"
                 >
                   <div className="card-icon messages-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -439,7 +436,7 @@ const Home = ({ userName, userImage, userData, onUserDataUpdate, onLogout }) => 
             </div>
             <div className="settings-list">
               {[
-                { key: 'notifications', title: 'Notifications', desc: 'Receive alerts about sessions and updates' },
+                { key: 'notifications', title: 'Notifications', desc: 'Receive alerts about sessions' },
                 { key: 'sounds', title: 'Sound Effects', desc: 'Play friendly sounds in the app' },
                 { key: 'muteSessionReminders', title: 'Mute Session Reminders', desc: 'Silence reminders during quiet hours' },
               ].map(item => (
