@@ -3,6 +3,7 @@
   "description": "ABC mouse is a platform for learning ABCs and numbers for children",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^13.4.0",
