@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './VideoCall.css';
-import { FaPhone, FaVideo, FaMicrophone, FaMicrophoneSlash, FaVolumeUp, FaVolumeMute, FaEllipsisV, FaUserPlus, FaExpand, FaArrowUp, FaLock, FaDesktop, FaComment } from 'react-icons/fa';
+import { FaPhone, FaVideo, FaMicrophone, FaMicrophoneSlash, FaVolumeUp, FaVolumeMute, FaLock} from 'react-icons/fa';
 
-const VideoCall = ({ contact, isVideo, onEndCall, onBack }) => {
+const VideoCall = ({ contact, isVideo, onEndCall }) => {
   const [isMuted, setIsMuted] = useState(false);
   const [isSpeakerOn, setIsSpeakerOn] = useState(true);
   const [isVideoOn, setIsVideoOn] = useState(isVideo);
