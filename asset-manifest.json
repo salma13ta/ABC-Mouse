@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/ABC-Mouse/static/css/main.61fa1114.css",
+    "main.js": "/ABC-Mouse/static/js/main.cd3ab827.js",
+    "static/media/children-reading-removebg-preview.png": "/ABC-Mouse/static/media/children-reading-removebg-preview.6d726b2d8fae7790f899.png",
+    "static/media/doctor-child-removebg-preview.png": "/ABC-Mouse/static/media/doctor-child-removebg-preview.65283dc90d034b1956a1.png",
+    "static/media/WhatsApp_Image_2026-01-05_at_4.43.00_PM-removebg-preview.png": "/ABC-Mouse/static/media/WhatsApp_Image_2026-01-05_at_4.43.00_PM-removebg-preview.a317d1db3bcfcf40280b.png",
+    "static/media/Jumping girl (2).gif": "/ABC-Mouse/static/media/Jumping girl (2).8890fe1be5bb3da3819a.gif",
+    "static/media/otp.png": "/ABC-Mouse/static/media/otp.0afde2e9d4fe881b0a77.png",
+    "static/media/new_pass.png": "/ABC-Mouse/static/media/new_pass.dbf835ca8de2d96e474b.png",
+    "static/media/log_image.png": "/ABC-Mouse/static/media/log_image.e576a0e13be7e756c901.png",
+    "static/media/forgot_password.png": "/ABC-Mouse/static/media/forgot_password.ddbb4448565bba2a3511.png",
+    "static/media/sign_up.png": "/ABC-Mouse/static/media/sign_up.2fbb818d11dc658043ea.png",
+    "index.html": "/ABC-Mouse/index.html",
+    "main.61fa1114.css.map": "/ABC-Mouse/static/css/main.61fa1114.css.map",
+    "main.cd3ab827.js.map": "/ABC-Mouse/static/js/main.cd3ab827.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.61fa1114.css",
+    "static/js/main.cd3ab827.js"
+  ]
+}
