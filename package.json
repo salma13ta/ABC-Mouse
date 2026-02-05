@@ -2,7 +2,7 @@
   "name": "ABC-Mouse",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://salma13ta.github.io/ABC-Mouse",
+  "homepage": "/",
   "dependencies": {
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
